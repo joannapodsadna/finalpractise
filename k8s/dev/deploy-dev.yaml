@@ -1,0 +1,40 @@
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: whoami-deploy
+  labels:
+    app: whoami
+spec:
+  replicas: 4
+  selector:
+    matchLabels:
+      app: whoami
+  template:
+    metadata:
+      labels:
+        app: whoami
+        env: production
+    spec:
+      containers:
+      - name: whoami
+        image: acrdemo5.azurecr.io/whoami:v1
+        ports:
+        - containerPort: 8000
+      imagePullSecrets:
+      - name: kama-kama
+---
+kind: Service
+apiVersion: v1
+metadata:
+  name: whoami
+spec:
+  type: LoadBalancer
+  ports:
+  - name: http
+    port: 80
+    targetPort: 8000
+    protocol: TCP
+  selector:
+    app: whoami
+
