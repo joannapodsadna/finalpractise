@@ -5,9 +5,9 @@ FROM python:3.6.2
 
 # We copy just the requirements.txt first to leverage Docker cache
 
-COPY ./whoami /whoami/
+COPY ./app /app/
 
-WORKDIR /whoami/
+WORKDIR /app/
 
 RUN pip install -r requirements.txt
 
