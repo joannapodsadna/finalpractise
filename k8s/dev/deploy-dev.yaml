@@ -14,7 +14,7 @@ spec:
     metadata:
       labels:
         app: whoami
-        env: production
+        env: dev
     spec:
       containers:
       - name: whoami
