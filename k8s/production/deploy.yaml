@@ -27,7 +27,7 @@ spec:
 kind: Service
 apiVersion: v1
 metadata:
-  name: whoami
+  name: whoami-svc
 spec:
   type: LoadBalancer
   ports:
