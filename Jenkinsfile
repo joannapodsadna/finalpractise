@@ -23,7 +23,7 @@ node {
     case "master":
         // Change deployed image in master to the one we just built
         sh("sudo kubectl --kubeconfig ~jenkinsdemo5/.kube/config get ns prod || sudo kubectl --kubeconfig ~jenkinsdemo5/.kube/config create ns prod")
-        withCredentials([usernamePassword(credentialsId: 'kama-kama', usernameVariable: 'USERNAME', passwordVariable: 'PASSWORD')]) {
+        withCredentials([usernamePassword(credentialsId: 'kama-kama', usernameVariable: 'a250b016-edc6-4945-8ef1-c87a7ae5de4d', passwordVariable: '042dcc1c-9739-4ee3-a14d-2e9871ea4e76')]) {
           sh "sudo kubectl --kubeconfig ~jenkinsdemo5/.kube/config -n prod get secret kama-kama || kubectl --namespace=prod create secret docker-registry kama-kama --docker-server ${acr} --docker-username $USERNAME --docker-password $PASSWORD"
         } 
         sh("sed -i.bak 's#${appRepo}#${imageTag}#' ./k8s/production/*.yaml")
