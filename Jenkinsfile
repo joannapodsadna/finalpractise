@@ -22,7 +22,7 @@ node {
     
     case "master":
         // Change deployed image in master to the one we just built
-        sh("sudo kubectl --kubeconfig ~jenkinsdemo5/.kube/configkubectl get ns prod || sudo kubectl --kubeconfig ~jenkinsdemo5/.kube/configkubectl create ns prod")
+        sh("sudo kubectl --kubeconfig ~jenkinsdemo5/.kube/configkubectl get ns prod || sudo kubectl --kubeconfig ~jenkinsdemo5/.kube/config create ns prod")
         withCredentials([usernamePassword(credentialsId: 'kama-kama', usernameVariable: 'USERNAME', passwordVariable: 'PASSWORD')]) {
           sh "sudo kubectl --kubeconfig ~jenkinsdemo5/.kube/config -n prod get secret kama-kama || kubectl --namespace=prod create secret docker-registry kama-kama --docker-server ${acr} --docker-username $USERNAME --docker-password $PASSWORD"
         } 
